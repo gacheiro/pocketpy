@@ -388,6 +388,22 @@ void init_builtins(VM* _vm) {
         return vm->PyStr(ss.str());
     });
 
+    _vm->bind_method<0>("str", "upper", [](VM* vm, const pkpy::Args& args) {
+        const Str& self = vm->PyStr_AS_C(args[0]);
+        Str _new = Str("", self.length());
+        for (auto i = 0; i < _new.length(); i++)
+            _new[i] = static_cast<char>(std::toupper(static_cast<unsigned char>(self[i])));
+        return vm->PyStr(_new);
+    });
+
+    _vm->bind_method<0>("str", "lower", [](VM* vm, const pkpy::Args& args) {
+        const Str& self = vm->PyStr_AS_C(args[0]);
+        Str _new = Str("", self.length());
+        for (auto i = 0; i < _new.length(); i++)
+            _new[i] = static_cast<char>(std::tolower(static_cast<unsigned char>(self[i])));
+        return vm->PyStr(_new);
+    });
+
     /************ PyList ************/
     _vm->bind_method<1>("list", "append", [](VM* vm, const pkpy::Args& args) {
         pkpy::List& self = vm->PyList_AS_C(args[0]);

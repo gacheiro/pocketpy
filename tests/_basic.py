@@ -93,6 +93,9 @@ assert 'testing5' > 'test' + 'ing1'
 assert 'abc' + 'def' == 'abcdef'
 assert 'abc' * 3 == 'abcabcabc'
 
+assert 'abcdefghijklmnopqrstuvwxyz'.upper() == 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+assert 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.lower() == 'abcdefghijklmnopqrstuvwxyz'
+
 # generate assert test for list
 
 assert [1, 2, 3] == [1, 2, 3]
